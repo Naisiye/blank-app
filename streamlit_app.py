@@ -51,8 +51,8 @@ with col13:
     st.write('')
 with col14:
     st.write('')
-
-# species_names = ['Iris-setosa','Iris-versicolor','Iris-virginica']
+    
+species_names = ['Iris-setosa','Iris-versicolor','Iris-virginica']
 
 if(predict_btn):
     inp1 = float(s_length)
@@ -61,15 +61,18 @@ if(predict_btn):
     inp4 = float(p_width)
     
     # typecast the values to be float type
-    X = [inp1, inp2, inp3, inp4]
+    X = [[inp1, inp2, inp3, inp4]]
 
-    species = model.predict(X)
-# the input values are passed onto the model for prediction
+    species_index = model.predict(X)[0]
+    #the index for the species has been predicted
+    predicted_species=species_names[species_index]
+    # the numerical vaues are mapped ontoo the species_names
+
     col15, col16, col17 = st.columns(3)
     with col15:
         st.write('')    
     with col16:
-        st.text(f"Predicted Iris Species: {species[0]}")
+        st.text(f"Predicted Iris Species: {predicted_species}")
         # displays the species predicted by the model.
     with col17:
         st.write('')
